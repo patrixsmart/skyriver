@@ -27,10 +27,7 @@
         "laravel": {
             "providers": [
                 "Patrixsmart\\Skyriver\\SkyriverProvider"
-            ],
-            "aliases": {
-
-            }
+            ]
         }
     },
     "autoload": {
