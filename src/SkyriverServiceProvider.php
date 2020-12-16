@@ -28,7 +28,7 @@ class SkyriverServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/skyriver.php' => config_path('skyriver.php')
-        ]);
+        ],'skyriver-config');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
