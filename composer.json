@@ -1,6 +1,6 @@
 {
     "name": "patrixsmart/skyriver",
-    "description": "A progressive implementation of Laravel authentication system.",
+    "description": "A progressive implementation of Laravel authentication system with bells and whistle.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -13,7 +13,6 @@
         "php": "^7.3",
         "laravel/framework": "^8.0",
         "laravel/passport": "^10.0",
-        "laravel/sanctum": "^2.6",
         "laravel/socialite": "^5.0"
     },
     "require-dev": {

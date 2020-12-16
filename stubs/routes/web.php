@@ -1,36 +1,63 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Skyriver\RegistrationController;
+use App\Http\Controllers\Skyriver\PasswordResetController;
+use App\Http\Controllers\Skyriver\AuthenticationController;
+use App\Http\Controllers\Skyriver\ForgotPasswordController;
+use App\Http\Controllers\Skyriver\Passport\CallbackController;
+use App\Http\Controllers\Skyriver\Passport\RedirectController;
+use App\Http\Controllers\Skyriver\Socialite\ProviderController;
+use App\Http\Controllers\Skyriver\PasswordConfirmationController;
 
-Route::namespace('App\Http\Controllers\Skyriver')->group(function (){
 
-    // Authentication...
-    Route::get('login', 'LoginController@showLoginForm')->name('login');
-    Route::post('login', 'LoginController@login');
-    Route::post('logout', 'LoginController@logout')->name('logout');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
-    // Registration...
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'RegisterController@register');
+// Oauth Redirect...
+Route::get('auth/redirect',[RedirectController::class,'__invoke']);
+Route::get('auth/callback',[CallbackController::class,'__invoke']);
 
-    // Profile Information...
-    Route::get('/user/profile-information', 'ProfileController')->middleware('auth:api')->name('user.profile');
+// Authentication...
+Route::get('user', [AuthenticationController::class, 'index']);
+Route::get('login', [AuthenticationController::class, 'create'])->name('login');
+Route::post('login', [AuthenticationController::class, 'store']);
+Route::post('logout', [AuthenticationController::class, 'logoutDevice'])->name('logout');
+Route::post('logout-other-devices', [AuthenticationController::class, 'logoutOtherDevices']);
 
-    // Password Reset...
-    Route::get('forgot-password', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('forgot-password', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('reset-password/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('reset-password', 'ResetPasswordController@reset')->name('password.update');
+// Social Authentication...
+Route::get('login/{provider}', [ProviderController::class,'redirectToProvider']);
+Route::get('login/{provider}/callback', [ProviderController::class,'handleProviderCallback']);
 
-    // Password Confirmation...
-    Route::get('/confirm-password', 'ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-    Route::post('/confirm-password', 'ConfirmPasswordController@confirm');
+// Registration...
+Route::get('register', [RegistrationController::class,'create'])->name('register');
+Route::post('register', [RegistrationController::class,'store']);
 
-    // Passwords...
-    Route::put('/update-password', 'UpdatePasswordController')->middleware('auth');
+// Password Confirmation...
+Route::get('confirm-password', [PasswordConfirmationController::class, 'create'])->name('password.confirm');
+Route::post('confirm-password', [PasswordConfirmationController::class, 'store']);
 
-    // Email Verification...
-    Route::get('verify-email', 'VerificationController@show')->name('verification.notice');
-    Route::get('verify-email/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
-    Route::post('email/verification-notification', 'VerificationController@send')->name('verification.send');
-});
+// Email Verification...
+Route::get('verify-email', [EmailVerificationController::class, 'notice'])->name('verification.notice');
+Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/verification-notification', [EmailVerificationController::class, 'send'])->name('verification.send');
+
+// Forgot Password...
+Route::get('forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+
+// Password Reset...
+Route::get('reset-password/{token}', [PasswordResetController::class, 'create'])->name('password.reset');
+Route::post('reset-password', [PasswordResetController::class, 'store'])->name('password.update');
+
+// Update Password...
+Route::get('update-password', [UpdatePasswordController::class,'create']);
+Route::post('update-password', [UpdatePasswordController::class,'store']);

@@ -1,11 +1,11 @@
 <?php
 
-namespace Patrixsmart\Skyriver\Actions\Passport;
+namespace App\Actions\Skyriver\Passport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class Generatetoken
+class PasswordToken
 {
     /**
      * Get the login username to be used by the controller.
@@ -23,16 +23,16 @@ class Generatetoken
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function handle(Request $request)
+    public static function handle(Request $request, $clientId, $clientSecret, $scope = '*')
     {
-        return Http::post(config('passport.token_endpoint'),
+        return Http::asForm()->post(config('skyriver.passport.token_endpoint'),
         [
             'grant_type' => 'password',
-            'client_id' => config('passport.password_grant_client.id'),
-            'client_secret' => config('passport.password_grant_client.secret'),
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
             'username' => $request->input(static::username()),
             'password' =>  $request->password,
-            'scope' => '*'
+            'scope' => $scope
         ])->throw()->json();
     }
 }

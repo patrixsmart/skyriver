@@ -1,12 +1,12 @@
 <?php
 
-namespace Patrixsmart\Skyriver\Actions\Passport;
+namespace App\Actions\Skyriver\Passport;
 
 use Illuminate\Http\Request;
 use Laravel\Passport\TokenRepository;
 use Laravel\Passport\RefreshTokenRepository;
 
-class Revoketoken
+class RevokeToken
 {
     /**
      * Handle the incoming request.
@@ -25,5 +25,7 @@ class Revoketoken
         // Revoke all of the token's refresh tokens...
         $refreshTokenRepository = new RefreshTokenRepository;
         $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($tokenId);
+
+        return 1;
     }
 }

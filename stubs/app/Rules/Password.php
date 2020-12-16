@@ -1,6 +1,6 @@
 <?php
 
-namespace Patrixsmart\Skyriver\Rules;
+namespace App\Rules\Skyriver;
 
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Rule;

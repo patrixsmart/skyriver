@@ -2,7 +2,7 @@
 
 namespace Patrixsmart\Skyriver;
 
-use Patrixsmart\Skyriver\Rules\Password;
+use App\Rules\Skyriver\Password;
 
 trait PasswordValidationRules
 {
@@ -11,8 +11,14 @@ trait PasswordValidationRules
      *
      * @return array
      */
-    protected function passwordRules()
+    protected function passwordRules(bool $confirmable = null)
     {
-        return ['required', 'string', new Password, 'confirmed', 'min:8'];
+        return [
+            'required',
+            'string',
+            new Password,
+            $confirmable ?'confirmed': '',
+            'min:8'
+        ];
     }
 }
