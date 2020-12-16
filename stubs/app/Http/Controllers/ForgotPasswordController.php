@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Skyriver;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;

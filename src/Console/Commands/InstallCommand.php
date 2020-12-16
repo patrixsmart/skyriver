@@ -40,24 +40,24 @@ class InstallCommand extends Command
     {
         // Actions...
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/Skyriver'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Actions', app_path('Actions/Skyriver'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Actions', app_path('Actions/Skyriver'));
 
         // Controllers...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Skyriver'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Controllers', app_path('Http/Controllers/Skyriver'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Http/Controllers', app_path('Http/Controllers/Skyriver'));
 
         // Requests...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests/Skyriver'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Requests', app_path('Http/Requests/Skyriver'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Http/Requests', app_path('Http/Requests/Skyriver'));
 
         // Rules
         (new Filesystem)->ensureDirectoryExists(app_path('Rules/Skyriver'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Rules', app_path('Rules/Skyriver'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Rules', app_path('Rules/Skyriver'));
 
         // Routes...
         (new Filesystem)->ensureDirectoryExists(base_path('routes/skyriver'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/routes', base_path('routes/skyriver'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/routes', base_path('routes/skyriver'));
 
-        return 0;
+        $this->info('Skyriver scaffolding installed successfully.');
     }
 }

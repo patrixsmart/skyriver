@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Skyriver;
 
-use App\Actions\Passport\PasswordToken;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Actions\Passport\RevokeToken;
 use App\Providers\RouteServiceProvider;
 use Patrixsmart\Skyriver\RedirectsUsers;
 use App\Http\Requests\Skyriver\LoginRequest;
+use App\Actions\Skyriver\Passport\RevokeToken;
+use App\Actions\Skyriver\Passport\PasswordToken;
 
 class AuthenticationController extends Controller
 {
