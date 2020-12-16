@@ -25,12 +25,17 @@ You will need to publish the config file for you to update it details:
 php artisan vendor:publish --tag="skyriver-config"
 ```
 
+###  Skyriver routes
 
-## Passport and Socialite Installations
+You will need to require skyriver web and api routes file path into yours respectively. 
+in default Laravel scaffolded app web and api file:
+```sh
+// Web routes
+require __DIR__.'/skyriver/web.php';
 
-Skyriver requires [Laravel PassPort](https://laravel.com/docs/8.x/passport) and 
-[Laravel Socialite](https://laravel.com/docs/8.x/socialite) for api and social authentications respectively. 
-Please install these packages as guarded in their documentations.
+// Api routes
+require __DIR__.'/skyriver/api.php';
+```
 
 ## Passport and Socialite Installations
 
