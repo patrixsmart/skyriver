@@ -14,7 +14,9 @@ class SkyriverServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/skyriver.php', 'skyriver'
+        );
     }
 
     /**
@@ -25,12 +27,8 @@ class SkyriverServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../../config/skyriver.php' => config_path('skyriver.php')
+            __DIR__.'/../config/skyriver.php' => config_path('skyriver.php')
         ]);
-
-        $this->mergeConfigFrom(
-            __DIR__.'/../../../config/skyriver.php', 'skyriver'
-        );
 
         if ($this->app->runningInConsole()) {
             $this->commands([
