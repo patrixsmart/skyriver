@@ -1,6 +1,6 @@
 {
     "name": "patrixsmart/skyriver",
-    "description": "A progressive implementation of Laravel authentication system with bells and whistle.",
+    "description": "A progressive backend implementation of Laravel authentication system with bells and whistle.",
     "type": "library",
     "license": "MIT",
     "authors": [

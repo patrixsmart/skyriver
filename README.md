@@ -2,7 +2,7 @@
 
 ## About Skyriver
 
-A progressive implementation of Laravel authentication system with bells and whistle.
+A progressive backend implementation of Laravel authentication system with bells and whistle.
 
 ## Installation
 
