@@ -5,6 +5,8 @@ use App\Http\Controllers\Skyriver\RegistrationController;
 use App\Http\Controllers\Skyriver\PasswordResetController;
 use App\Http\Controllers\Skyriver\AuthenticationController;
 use App\Http\Controllers\Skyriver\ForgotPasswordController;
+use App\Http\Controllers\Skyriver\UpdatePasswordController;
+use App\Http\Controllers\Skyriver\EmailVerificationController;
 use App\Http\Controllers\Skyriver\Passport\CallbackController;
 use App\Http\Controllers\Skyriver\Passport\RedirectController;
 use App\Http\Controllers\Skyriver\Socialite\ProviderController;
