@@ -44,12 +44,34 @@ Skyriver requires [Laravel PassPort](https://laravel.com/docs/8.x/passport) and
 We have tried to make the installations and implementations of these packages easier; add this provider in your 
 config/app.php providers list.
 ```sh
-App\\Providers\\SkyriverServiceProvider::class,
+App\Providers\SkyriverServiceProvider::class,
 ```
 and uses this trait in your User model
 
 ```sh
  use HasSocialAccounts;
+```
+### Needed Environment Variables
+
+You need to provide the following environment variables in your .env file.
+
+```sh
+# Skyriver Settings
+SKYRIVER_PASSPORT_PASSWORD_GRANT_CLIENT_ID=
+SKYRIVER_PASSPORT_PASSWORD_GRANT_CLIENT_SECRET=
+
+SKYRIVER_PASSPORT_AUTHORIZATION_ENDPOINT="${APP_URL}/oauth/authorize?"
+SKYRIVER_PASSPORT_TOKEN_ENDPOINT="${APP_URL}/oauth/token"
+SKYRIVER_PASSPORT_COOKIE_NAME=laravel_token
+###
+
+# Passport Settings
+PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
+PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=
+
+PASSPORT_PRIVATE_KEY=
+PASSPORT_PUBLIC_KEY=
+###
 ```
 
 ## Skyriver Sponsors

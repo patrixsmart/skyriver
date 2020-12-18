@@ -44,7 +44,7 @@ return [
         |
         */
 
-        'cookie_name' => env('PASSPORT_COOKIE_NAME','laravel_token') ,
+        'cookie_name' => env('SKYRIVER_PASSPORT_COOKIE_NAME','laravel_token') ,
 
         /*
         |--------------------------------------------------------------------------
