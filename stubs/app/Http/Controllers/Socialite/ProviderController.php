@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Laravel\Socialite\Facades\Socialite;
 use App\Actions\Skyriver\Passport\PersonalToken;
-use App\Actions\Skyriver\Socialite\ProviderAccount;
+use App\Actions\Skyriver\Socialite\ProviderUser;
 
 class ProviderController extends Controller
 {
@@ -34,26 +34,26 @@ class ProviderController extends Controller
      */
     public function handleProviderCallback(Request $request, $provider)
     {
-        $providerAccount = ProviderAccount::handle($provider);
+        $providerUser = ProviderUser::handle($provider);
 
-        $user = User::whereEmail($providerAccount->getEmail())->firstOrFail();
+        $user = User::whereEmail($providerUser->getEmail())->firstOrFail();
 
-        // $socialAccount = $user->social_accounts()->where([
-        //     'provider' => $provider,
-        //     'provider_id' => $providerAccount->getId()
-        // ])->first();
+        $socialAccount = $user->social_accounts()->where([
+            'provider' => $provider,
+            'provider_id' => $providerUser->getId()
+        ])->first();
 
-        // if(!$socialAccount){
+        if(!$socialAccount){
 
-        //     $user->social_accounts()->create(
-        //         $this->neededData($provider, $providerAccount)
-        //     );
-        // } else {
+            $user->social_accounts()->create(
+                $this->neededData($provider, $providerUser)
+            );
+        } else {
 
-        //     $socialAccount->update(
-        //         $this->neededData($provider, $providerAccount)
-        //     );
-        // }
+            $socialAccount->update(
+                $this->neededData($provider, $providerUser)
+            );
+        }
 
         return  $this->authenticate($request, $user, $provider);
     }
@@ -61,23 +61,23 @@ class ProviderController extends Controller
     /**
      *  Get social media account informations.
      *
-     * @param $providerAccount
+     * @param $providerUser
      * @return array
      */
-    protected function neededData($provider, $providerAccount)
+    protected function neededData($provider, $providerUser)
     {
         return [
             "provider" => $provider,
-            "provider_id" => $providerAccount->getId(),
-            "token" => $providerAccount->token,
-            "token_secret" => $provider == 'twitter' ? $providerAccount->tokenSecret : null,
-            "refresh_token" => $provider != 'twitter' ? $providerAccount->refreshToken : null,
-            "expires_in" => $provider != 'twitter' ? $providerAccount->expiresIn : null,
-            "name" => $providerAccount->getName(),
-            "nickname" => $providerAccount->getNickname(),
-            "email" => $providerAccount->getEmail(),
-            "avatar" => $providerAccount->getAvatar(),
-            "content" => json_encode($providerAccount)
+            "provider_id" => $providerUser->getId(),
+            "token" => $providerUser->token,
+            "token_secret" => $provider == 'twitter' ? $providerUser->tokenSecret : null,
+            "refresh_token" => $provider != 'twitter' ? $providerUser->refreshToken : null,
+            "expires_in" => $provider != 'twitter' ? $providerUser->expiresIn : null,
+            "name" => $providerUser->getName(),
+            "nickname" => $providerUser->getNickname(),
+            "email" => $providerUser->getEmail(),
+            "avatar" => $providerUser->getAvatar(),
+            "content" => json_encode($providerUser)
         ];
     }
 

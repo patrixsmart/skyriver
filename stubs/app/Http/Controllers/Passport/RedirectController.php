@@ -28,8 +28,8 @@ class RedirectController extends Controller
     {
         return RedirectClient::handle(
             $request,
-            $request->client_id, // CLIENT_ID,
-            $request->client_secret, // CLIENT_SECRET
+            '', // CLIENT_ID
+            '' // CLIENT_SECRET
         );
     }
 }

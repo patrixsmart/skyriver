@@ -4,7 +4,7 @@ namespace App\Actions\Skyriver\Socialite;
 
 use Laravel\Socialite\Facades\Socialite;
 
-class ProviderAccount
+class ProviderUser
 {
     /**
      * Handle the incoming request.

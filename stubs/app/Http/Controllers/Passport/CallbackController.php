@@ -30,9 +30,9 @@ class CallbackController extends Controller
 
         return ClientCallback::handle(
             $request,
-            $request->client_id, // CLIENT_ID,
-            $request->client_secret, // CLIENT_SECRET
-            $request->redirect_uri // REDIRECT_URI,
+            '', // CLIENT_ID
+            '', // CLIENT_SECRET
+            '' // REDIRECT_URI,
         );
     }
 }
