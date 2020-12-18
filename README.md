@@ -40,8 +40,17 @@ require __DIR__.'/skyriver/api.php';
 ## Passport and Socialite Installations
 
 Skyriver requires [Laravel PassPort](https://laravel.com/docs/8.x/passport) and 
-[Laravel Socialite](https://laravel.com/docs/8.x/socialite) for api and social authentications respectively. 
-Please install these packages as guarded in their documentations.
+[Laravel Socialite](https://laravel.com/docs/8.x/socialite) for api and social authentications respectively.
+We have tried to make the installations and implementations of these packages easier; add this provider in your 
+config/app.php providers list.
+```sh
+App\\Providers\\SkyriverServiceProvider::class,
+```
+and uses this trait in your User model
+
+```sh
+ use HasSocialAccounts;
+```
 
 ## Skyriver Sponsors
 
