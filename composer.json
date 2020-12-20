@@ -32,8 +32,8 @@
     "autoload": {
         "psr-4": {
             "Patrixsmart\\Skyriver\\": "src/",
-            "Patrixsmart\\Skyriver\\Database\\Factories\\": "database/factories",
-            "Patrixsmart\\Skyriver\\Database\\Seeders\\": "database/seeders"
+            "Patrixsmart\\Skyriver\\Database\\Factories\\Socialite": "database/factories/socialite",
+            "Patrixsmart\\Skyriver\\Database\\Seeders\\Socialite": "database/seeders/socialite"
         }
     },
     "minimum-stability": "dev",
