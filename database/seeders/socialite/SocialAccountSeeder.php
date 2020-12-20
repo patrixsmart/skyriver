@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Skyriver\Socialite;
+namespace Patrixsmart\Skyriver\Database\Seeders\Socialite;
 
 use Illuminate\Database\Seeder;
 

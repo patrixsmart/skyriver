@@ -31,7 +31,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Patrixsmart\\Skyriver\\": "src/"
+            "Patrixsmart\\Skyriver\\": "src/",
+            "Patrixsmart\\Skyriver\\Database\\Factories\\": "database/factories",
+            "Patrixsmart\\Skyriver\\Database\\Seeders\\": "database/seeders"
         }
     },
     "minimum-stability": "dev",

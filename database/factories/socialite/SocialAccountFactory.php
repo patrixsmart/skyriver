@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Skyriver\Socialite;
+namespace Patrixsmart\Skyriver\Database\Factories\Socialite;
 
 use App\Models\Skyriver\Socialite\SocialAccount;
 use Illuminate\Database\Eloquent\Factories\Factory;

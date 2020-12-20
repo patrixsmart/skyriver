@@ -46,10 +46,6 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Skyriver'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Http/Controllers', app_path('Http/Controllers/Skyriver'));
 
-        // Factories...
-        (new Filesystem)->ensureDirectoryExists(base_path('database/factories/skyriver/socialite'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/database/factories/socialite', base_path('database/factories/skyriver/socialite'));
-
         // Migrations...
         (new Filesystem)->ensureDirectoryExists(base_path('database/migrations'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/database/migrations', base_path('database/migrations'));
@@ -73,10 +69,6 @@ class InstallCommand extends Command
         // Routes...
         (new Filesystem)->ensureDirectoryExists(base_path('routes/skyriver'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/routes', base_path('routes/skyriver'));
-
-        // Seeders...
-        (new Filesystem)->ensureDirectoryExists(base_path('database/seeders/skyriver/socialite'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/database/seeders/socialite', base_path('database/seeders/skyriver/socialite'));
 
         // Traits
         (new Filesystem)->ensureDirectoryExists(app_path('Traits/Skyriver'));
