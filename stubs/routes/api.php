@@ -60,4 +60,4 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->nam
 Route::post('/reset-password', [PasswordResetController::class, 'store'])->name('password.update');
 
 // Update Password...
-Route::post('/update-password', [UpdatePasswordController::class,'store']);
+Route::match(['post','put'],'/update-password', [UpdatePasswordController::class,'store']);

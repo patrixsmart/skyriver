@@ -62,4 +62,4 @@ Route::post('reset-password', [PasswordResetController::class, 'store'])->name('
 
 // Update Password...
 Route::get('update-password', [UpdatePasswordController::class,'create']);
-Route::post('update-password', [UpdatePasswordController::class,'store']);
+Route::match(['post','put'],'update-password', [UpdatePasswordController::class,'store']);
