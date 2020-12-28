@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Skyriver\Socialite;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,20 @@ class ProviderController extends Controller
      */
     public function redirectToProvider(Request $request, $provider)
     {
-        return Socialite::driver($provider)
-        ->with([])
-        ->scopes($request->scopes)
-        ->stateless()
-        ->redirect();
+        $toProvider = Socialite::driver($provider)
+        ->with([
+            // Add any addition parameters you which to have back from providers as a query string
+            //  to the state parameter, it will be returned back by all providers.
+            'state' =>  Arr::query([
+                'request_callback_url' => $request->query('callback_url')
+            ])
+        ])
+        // ->scopes($request->scopes)
+        ->stateless();
+
+        return  $request->wantsJson() ?
+                    $toProvider->redirect()->getTargetUrl() :
+                    $toProvider->redirect() ;
     }
 
     /**
@@ -86,14 +96,39 @@ class ProviderController extends Controller
      */
     protected function authenticate(Request $request, User $user, $provider)
     {
-        if($request->wantsJson())
+        if($request->state)
         {
-            // Generate Personal Token
-            return PersonalToken::handle($user, 'Social authentication for'.$provider.'@'.time());
+            parse_str($request->state, $state);
+
+            if($state['request_callback_url'] != config(('app.url'))){
+                // Generate Personal Token and redirect
+                return redirect()->away(
+                    $state['request_callback_url'].'?'.
+                    Arr::query([
+                        'tutorsark' => $this->formatPersonalToken(
+                            PersonalToken::handle($user, 'Social authentication for'.$provider.'@'.time())
+                        )
+                    ])
+                );
+            }
+
         }
 
         Auth::login($user);
 
         return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+    /**
+     *
+     */
+    protected function formatPersonalToken($personalToken)
+    {
+        return [
+            'token_type' => 'Bearer',
+            'access_token' => $personalToken->accessToken,
+            'expires_in' => $personalToken->token->expires_at->diffInSeconds($personalToken->token->updated_at),
+            'refresh_token' => false
+        ];
     }
 }

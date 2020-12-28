@@ -7,7 +7,6 @@ use App\Http\Controllers\Skyriver\AuthenticationController;
 use App\Http\Controllers\Skyriver\ForgotPasswordController;
 use App\Http\Controllers\Skyriver\UpdatePasswordController;
 use App\Http\Controllers\Skyriver\EmailVerificationController;
-use App\Http\Controllers\Skyriver\Socialite\ProviderController;
 use App\Http\Controllers\Skyriver\Passport\ClientTokenController;
 use App\Http\Controllers\Skyriver\Passport\RevokeTokenController;
 use App\Http\Controllers\Skyriver\PasswordConfirmationController;
@@ -38,10 +37,6 @@ Route::any('revoke-token',[RevokeTokenController::class,'__invoke']);
 Route::get('/user', [AuthenticationController::class, 'index']);
 Route::post('login', [AuthenticationController::class, 'store']);
 Route::post('logout', [AuthenticationController::class, 'logoutDevice'])->name('logout');
-
-// Social Authentication...
-Route::get('login/{provider}', [ProviderController::class,'redirectToProvider']);
-Route::get('login/{provider}/callback', [ProviderController::class,'handleProviderCallback']);
 
 // Registration...
 Route::post('register', [RegistrationController::class,'store']);

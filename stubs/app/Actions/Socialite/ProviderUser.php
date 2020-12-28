@@ -23,7 +23,7 @@ class ProviderUser
 
         if($providerToken){
 
-            return $socialiteProvider->stateless()->userFromToken($providerToken);
+            return $socialiteProvider->userFromToken($providerToken);
         }
 
        return $socialiteProvider->user();

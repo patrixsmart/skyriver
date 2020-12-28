@@ -9,7 +9,6 @@ use App\Http\Controllers\Skyriver\UpdatePasswordController;
 use App\Http\Controllers\Skyriver\EmailVerificationController;
 use App\Http\Controllers\Skyriver\Passport\CallbackController;
 use App\Http\Controllers\Skyriver\Passport\RedirectController;
-use App\Http\Controllers\Skyriver\Socialite\ProviderController;
 use App\Http\Controllers\Skyriver\PasswordConfirmationController;
 
 
@@ -34,10 +33,6 @@ Route::get('login', [AuthenticationController::class, 'create'])->name('login');
 Route::post('login', [AuthenticationController::class, 'store']);
 Route::post('logout', [AuthenticationController::class, 'logoutDevice'])->name('logout');
 Route::post('logout-other-devices', [AuthenticationController::class, 'logoutOtherDevices']);
-
-// Social Authentication...
-Route::get('login/{provider}', [ProviderController::class,'redirectToProvider']);
-Route::get('login/{provider}/callback', [ProviderController::class,'handleProviderCallback']);
 
 // Registration...
 Route::get('register', [RegistrationController::class,'create'])->name('register');
