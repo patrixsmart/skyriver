@@ -7,12 +7,7 @@ use App\Http\Controllers\Skyriver\AuthenticationController;
 use App\Http\Controllers\Skyriver\ForgotPasswordController;
 use App\Http\Controllers\Skyriver\UpdatePasswordController;
 use App\Http\Controllers\Skyriver\EmailVerificationController;
-use App\Http\Controllers\Skyriver\Passport\ClientTokenController;
-use App\Http\Controllers\Skyriver\Passport\RevokeTokenController;
 use App\Http\Controllers\Skyriver\PasswordConfirmationController;
-use App\Http\Controllers\Skyriver\Passport\RefreshTokenController;
-use App\Http\Controllers\Skyriver\Passport\PasswordTokenController;
-use App\Http\Controllers\Skyriver\Passport\PersonalTokenController;
 
 
 /*
@@ -25,13 +20,6 @@ use App\Http\Controllers\Skyriver\Passport\PersonalTokenController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Oauth Token Management...
-Route::any('client-token',[ClientTokenController::class,'__invoke']);
-Route::any('password-token',[PasswordTokenController::class,'__invoke']);
-Route::any('personal-token',[PersonalTokenController::class,'__invoke']);
-Route::any('refresh-token',[RefreshTokenController::class,'__invoke']);
-Route::any('revoke-token',[RevokeTokenController::class,'__invoke']);
 
 // Authentication...
 Route::get('/user', [AuthenticationController::class, 'index']);

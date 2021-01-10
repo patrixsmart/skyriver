@@ -7,8 +7,6 @@ use App\Http\Controllers\Skyriver\AuthenticationController;
 use App\Http\Controllers\Skyriver\ForgotPasswordController;
 use App\Http\Controllers\Skyriver\UpdatePasswordController;
 use App\Http\Controllers\Skyriver\EmailVerificationController;
-use App\Http\Controllers\Skyriver\Passport\CallbackController;
-use App\Http\Controllers\Skyriver\Passport\RedirectController;
 use App\Http\Controllers\Skyriver\PasswordConfirmationController;
 
 
@@ -22,10 +20,6 @@ use App\Http\Controllers\Skyriver\PasswordConfirmationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Oauth Redirect...
-Route::get('auth/redirect',[RedirectController::class,'__invoke']);
-Route::get('auth/callback',[CallbackController::class,'__invoke']);
 
 // Authentication...
 Route::get('user', [AuthenticationController::class, 'index']);

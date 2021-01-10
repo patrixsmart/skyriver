@@ -18,9 +18,9 @@ class CreateSkyriverTables extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('provider');
             $table->string('provider_id');
-            $table->string('token');
-            $table->string('token_secret')->nullable();
-            $table->string('refresh_token')->nullable();
+            $table->text('token');
+            $table->text('token_secret')->nullable();
+            $table->text('refresh_token')->nullable();
             $table->string('expires_in')->nullable();
             $table->string('name')->nullable();
             $table->string('nickname')->nullable();

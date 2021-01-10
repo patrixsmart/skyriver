@@ -26,6 +26,6 @@ class RevokeToken
         $refreshTokenRepository = new RefreshTokenRepository;
         $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($tokenId);
 
-        return 1;
+        return true;
     }
 }

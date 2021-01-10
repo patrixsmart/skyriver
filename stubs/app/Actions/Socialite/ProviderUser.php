@@ -14,7 +14,10 @@ class ProviderUser
      */
     public static function handle($provider, $providerToken = null, $providerSecret = null)
     {
-        $socialiteProvider = Socialite::driver($provider)->stateless();
+
+        $socialiteProvider = $provider == 'twitter'?
+                                Socialite::driver($provider):
+                                Socialite::driver($provider)->stateless();
 
         if($providerToken && $providerSecret){
 
