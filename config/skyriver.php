@@ -3,7 +3,7 @@
 return [
     "frontend" => [
         "app" => [
-            "name" => env('SKYRIVER_FRONTEND_APP_Name'),
+            "name" => env('SKYRIVER_FRONTEND_APP_NAME'),
             "url" => env('SKYRIVER_FRONTEND_APP_URL')
         ],
     ],
