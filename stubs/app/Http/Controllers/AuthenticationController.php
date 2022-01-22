@@ -89,8 +89,8 @@ class AuthenticationController extends Controller
         // Generate Token For Api
         return PasswordToken::handle(
             $request,
-            config('passport.password_grant_client.id'),
-            config('passport.password_grant_client.secret')
+            config('skyriver.passport.password_grant_client.id'),
+            config('skyriver.passport.password_grant_client.secret')
         );
     }
 
