@@ -16,10 +16,10 @@ class FrontendController extends Controller
     public function __invoke(Request $request)
     {
         if($request->path() == "/"){
-        
-            return redirect()->away('https://app.tutorsark.com');
+
+            return redirect()->away(config('skyriver.frontend.app.url'));
         }
-        
-        return redirect()->away('https://app.tutorsark.com/'.$request->path());
+
+        return redirect()->away(config('skyriver.frontend.app.url').'/'.$request->path());
     }
 }

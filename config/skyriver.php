@@ -1,6 +1,12 @@
 <?php
 
 return [
+    "frontend" => [
+        "app" => [
+            "name" => env('SKYRIVER_FRONTEND_APP_Name'),
+            "url" => env('SKYRIVER_FRONTEND_APP_URL')
+        ],
+    ],
 
     "passport" => [
 
