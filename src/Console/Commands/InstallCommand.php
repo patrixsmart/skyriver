@@ -46,6 +46,10 @@ class InstallCommand extends Command
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Skyriver'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/app/Http/Controllers', app_path('Http/Controllers/Skyriver'));
 
+        // Config...
+        (new Filesystem)->ensureDirectoryExists(base_path('config'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../../config', base_path('config'));
+
         // Migrations...
         (new Filesystem)->ensureDirectoryExists(base_path('database/migrations'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../../stubs/database/migrations', base_path('database/migrations'));
