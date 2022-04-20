@@ -13,8 +13,8 @@ class InstallCommand extends Command
      * @var string
      */
     protected $signature = 'skyriver:install
-    {--P|passport : Install all the files needed to generate api token with passport}
-    {--S|socialite} : Install all the files needed for social authentication using socialite';
+    {--P|passport=true : Install all the files needed to generate api token with passport}
+    {--S|socialite}=true : Install all the files needed for social authentication using socialite';
 
     /**
      * The console command description.
