@@ -2,13 +2,13 @@
 
 ## About Skyriver
 
-A progressive backend implementation of Laravel authentication system with bells and whistle.
+A progressive backend implementation of Laravel authentication system for both api and web with bells and whistle.
 
 ## Installation
 
 Require the `patrixsmart/skyriver` package in your `composer.json` and update your dependencies:
 ```sh
-composer require patrixsmart/skyriver
+composer require patrixsmart/skyriver laravel/passport laravel/socialite
 ```
 
 ### Skyriver install command
@@ -25,16 +25,33 @@ You will need to publish the config file for you to update it details:
 php artisan vendor:publish --tag="skyriver-config"
 ```
 
-###  Skyriver routes
+### Skyriver routes
 
 You will need to require skyriver web and api routes file path into yours respectively. 
 in default Laravel scaffolded app web and api file:
+
+#### Web routes
 ```sh
 // Web routes
 require __DIR__.'/skyriver/web.php';
 
+// Web redirect to api routes 
+require __DIR__.'/skyriver/webredirect.php';
+```
+#### Api routes
+```sh
 // Api routes
 require __DIR__.'/skyriver/api.php';
+```
+#### Passport routes
+```sh
+// Passport routes
+require __DIR__.'/skyriver/passport.php';
+```
+# Socialite routes
+```sh
+// Socialite routes
+require __DIR__.'/skyriver/passport.php';
 ```
 
 ## Passport and Socialite Installations
@@ -46,10 +63,10 @@ config/app.php providers list.
 ```sh
 App\Providers\SkyriverServiceProvider::class,
 ```
-and uses this trait in your User model
+and use this trait in your User model
 
 ```sh
- use HasSocialAccounts;
+ use HasApiTokens, HasSocialAccounts;
 ```
 ### Needed Environment Variables
 
@@ -73,7 +90,12 @@ PASSPORT_PRIVATE_KEY=
 PASSPORT_PUBLIC_KEY=
 ###
 ```
+### Passport Install Command 
 
+You will need to run the passport install command below to publish resources and generate default keys:
+```sh
+php artisan passport:install --uuids
+```
 ## Skyriver Sponsors
 
 We would appreciate your sponsorship for the development of Skyriver. If you are interested in becoming a sponsor, please contact PatriXsmarT LLC. via [package@patrixsmart.com](mailto:package@patrixsmart.com).
